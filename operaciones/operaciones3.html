@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pausa Activa Creativa - Carlos Angulo</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="shortcut icon" type="image/png" href="../favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#dc2626',
+                        secondary: '#991b1b',
+                        accent: '#ef4444',
+                        dark: '#111827',
+                        'dark-light': '#1f2937',
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #111827 0%, #374151 50%, #dc2626 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Nuevos estilos */
+        .icon-bubble {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            background-color: rgba(219, 39, 119, 0.1);
+            color: #db2777;
+            font-size: 1.5rem;
+        }
+        .highlight-text {
+            background: linear-gradient(90deg, #dc2626 0%, #db2777 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23dc2626' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-gray-900/98 backdrop-blur-md shadow-2xl fixed w-full top-0 z-50 border-b border-gray-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-5">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary via-red-500 to-secondary rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                        <span class="text-white font-bold text-xl">CA</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white leading-tight">Carlos Angulo</h1>
+                        <p class="text-gray-400 text-sm">Desarrollador & Educador</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-10">
+                    <a href="index.html#inicio" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Inicio
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="index.html#sobre-mi" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Sobre Mí
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="operaciones.html" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Conjuntos
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="operaciones1.html" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Operaciones
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-primary font-medium relative group py-2">
+                        Ejercicios
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300"></span>
+                    </a>
+                    <a href="index.html#contacto" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                        Contacto
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-300 hover:text-primary transition duration-300 p-2">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>    <section class="gradient-bg pt-24 pb-20 px-4">
+        <div class="max-w-6xl mx-auto text-center text-white fade-in">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                Pausa Activa Creativa
+            </h1>
+            <p class="text-xl opacity-90 max-w-4xl mx-auto mb-6">
+                Explora tu creatividad con actividades matemáticas y artísticas
+            </p>
+            <div class="flex justify-center space-x-4 mt-8">
+                <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg text-white font-medium">10-15 minutos</span>
+                <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg text-white font-medium">Individual o Grupal</span>
+                <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg text-white font-medium">Actividad Creativa</span>
+            </div>
+        </div>
+    </section>    <section class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Actividad: "Mi Carrera en Números"</h2>
+                <p class="text-gray-600 mt-3 max-w-3xl mx-auto">Conecta la matemática con tu desarrollo profesional a través de estas actividades creativas</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Opción 1: Dibujo Matemático -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-bl-full -mr-8 -mt-8"></div>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Dibujo Matemático 🖍️</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Crea un dibujo que represente tu carrera usando solo formas geométricas y números:</p>
+                    <ul class="space-y-2 text-gray-600 mb-6">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">⭕</span>
+                            <span>Círculos para ciclos, procesos, o conceptos completos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">▢</span>
+                            <span>Cuadrados/Rectángulos para estructuras, bases sólidas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">△</span>
+                            <span>Triángulos para crecimiento, jerarquías, decisiones</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">—</span>
+                            <span>Líneas para conexiones, procesos, o tiempo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">123</span>
+                            <span>Números importantes en tu campo</span>
+                        </li>
+                    </ul>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="text-blue-800 font-semibold mb-2">Ejemplos:</p>
+                        <ul class="text-blue-700 space-y-2">
+                            <li><span class="font-medium">Medicina:</span> Corazón con círculos concéntricos, termómetro (36.5°C), cruz médica</li>
+                            <li><span class="font-medium">Ingeniería:</span> Engranajes circulares, edificios rectangulares, ángulos de 90°</li>
+                            <li><span class="font-medium">Arte:</span> Paleta circular, lienzos rectangulares, valores RGB (255, 128, 64)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Opción 2: Infografía Visual -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-green-500/10 rounded-bl-full -mr-8 -mt-8"></div>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Infografía Visual 📊</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Diseña una infografía simple sobre tu carrera usando elementos matemáticos:</p>
+                    <ul class="space-y-2 text-gray-600 mb-6">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">🥧</span>
+                            <span>Gráfico circular: Porcentaje de tiempo para diferentes actividades</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">📊</span>
+                            <span>Gráfico de barras: Ranking de habilidades a desarrollar</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">⏳</span>
+                            <span>Línea de tiempo: Eventos importantes en la historia de tu campo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">📈</span>
+                            <span>Estadísticas creativas: Datos curiosos sobre tu profesión</span>
+                        </li>
+                    </ul>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <p class="text-green-800 font-semibold mb-2">Idea de diseño:</p>
+                        <p class="text-green-700">Combina diferentes tipos de gráficos en una sola página, unidos por un tema común como "Mi futuro profesional en números" o "El impacto de mi carrera".</p>
+                    </div>
+                </div>
+                
+                <!-- Opción 3: Poema Matemático -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-bl-full -mr-8 -mt-8"></div>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Poema Matemático ✍️</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Escribe un poema sobre tu carrera usando operaciones matemáticas como metáforas:</p>
+                    <ul class="space-y-2 text-gray-600 mb-6">
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">➕</span>
+                            <span><strong>Suma:</strong> Elementos que te llevaron a elegir esta carrera</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">➖</span>
+                            <span><strong>Resta:</strong> Miedos o dudas que tuviste que superar</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">✖️</span>
+                            <span><strong>Multiplicación:</strong> Cómo multiplicará tus oportunidades</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">➗</span>
+                            <span><strong>División:</strong> Cómo compartirás tu conocimiento</span>
+                        </li>
+                    </ul>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <p class="text-purple-800 font-semibold mb-2">Ejemplo (Psicología):</p>
+                        <p class="text-purple-700 italic">SUMA de curiosidad + empatía infinita,<br>
+                        cada historia humana, mi mente necesita.<br>
+                        RESTA los prejuicios, las etiquetas del ayer,<br>
+                        para al alma herida, un camino ofrecer.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reflexión Grupal -->
+            <div class="mt-12 bg-white p-8 rounded-xl shadow-lg card-hover fade-in border-t-4 border-primary">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Reflexión Grupal</h3>
+                        <p class="text-gray-600">Últimos 5 minutos: Momento para compartir y reflexionar</p>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700 mb-2">💭 Pregunta 1:</p>
+                        <p class="text-gray-600">¿Qué números o formas consideran más importantes en su carrera? ¿Por qué esos tienen un significado especial?</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700 mb-2">💭 Pregunta 2:</p>
+                        <p class="text-gray-600">¿Cómo se relacionan las matemáticas con lo que quieren estudiar? ¿Hay alguna conexión sorprendente?</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700 mb-2">💭 Pregunta 3:</p>
+                        <p class="text-gray-600">¿Alguna operación matemática describe mejor su motivación? (¿sumar conocimiento, multiplicar impacto, etc.?)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <footer class="bg-gray-800 text-white py-12 px-4 mt-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Sobre esta actividad</h4>
+                    <p class="text-gray-400">Esta pausa activa está diseñada para conectar el pensamiento matemático con la creatividad y el desarrollo profesional.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Recursos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>🎨 Materiales de dibujo</li>
+                        <li>📊 Plantillas para infografías</li>
+                        <li>📝 Ejemplos de poemas matemáticos</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Contacto</h4>
+                    <p class="text-gray-400">Para más actividades y recursos educativos, contacta a Carlos Angulo.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400">© 2025 Carlos Angulo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="mobile-menu" class="md:hidden bg-gray-900 shadow-2xl absolute top-full left-0 right-0 border-t border-gray-700 hidden z-50">
+        <div class="px-4 py-4 space-y-3">
+            <a href="index.html#inicio" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Inicio</a>
+            <a href="index.html#sobre-mi" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Sobre Mí</a>
+            <a href="operaciones.html" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Conjuntos</a>
+            <a href="operaciones1.html" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Operaciones</a>
+            <a href="#" class="block py-3 text-primary transition duration-300 border-b border-gray-700">Ejercicios</a>
+            <a href="index.html#contacto" class="block py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg text-center font-semibold hover:shadow-lg transition duration-300 mt-2">Contacto</a>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+                    mobileMenu.style.display = 'block';
+                } else {
+                    mobileMenu.style.display = 'none';
+                }
+            });
+        }
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
