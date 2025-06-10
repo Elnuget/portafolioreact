@@ -2,10 +2,9 @@ import React from 'react';
 
 function McdMcmHero() {
   return (
-    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-gray-900 to-gray-800">
-      <div className="absolute inset-0 z-0">
+    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-gray-900 to-gray-800">      <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-[url('/public/images/math-pattern.png')] opacity-10 bg-repeat"></div>
+        <div className="absolute inset-0 opacity-10 bg-repeat"></div>
       </div>
       
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">

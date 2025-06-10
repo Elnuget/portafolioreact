@@ -290,13 +290,13 @@ function HomePage() {
                 Material didáctico interactivo para aprender desde los conceptos básicos hasta temas avanzados. Incluye ejercicios prácticos y ejemplos paso a paso.
               </p>
               <div className="space-y-4">
-                <a href="/operaciones" className="flex items-center justify-between bg-primary/5 hover:bg-primary/10 px-4 py-3 rounded-lg group transition-colors">
+                <a href="#/operaciones" className="flex items-center justify-between bg-primary/5 hover:bg-primary/10 px-4 py-3 rounded-lg group transition-colors">
                   <span className="text-gray-700 font-medium">Operaciones Básicas</span>
                   <svg className="w-5 h-5 text-primary transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                   </svg>
                 </a>
-                <a href="/mcdmcm" className="flex items-center justify-between bg-primary/5 hover:bg-primary/10 px-4 py-3 rounded-lg group transition-colors">
+                <a href="#/mcdmcm" className="flex items-center justify-between bg-primary/5 hover:bg-primary/10 px-4 py-3 rounded-lg group transition-colors">
                   <span className="text-gray-700 font-medium">MCD y MCM</span>
                   <svg className="w-5 h-5 text-primary transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -427,9 +427,9 @@ function HomePage() {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/operaciones" element={<BasicOperations />} />
-      <Route path="/mcdmcm" element={<McdMcmPage />} />
+      <Route path="" element={<HomePage />} />
+      <Route path="operaciones" element={<BasicOperations />} />
+      <Route path="mcdmcm" element={<McdMcmPage />} />
     </Routes>
   );
 }

@@ -15,37 +15,36 @@ function Navbar({ activePage }) {
                 <p className="text-gray-400 text-sm">Desarrollador & Educador</p>
               </div>
             </div>
-            <div className="hidden md:flex space-x-10">
-              <a 
-                href={activePage === 'home' ? '#inicio' : '/'} 
+            <div className="hidden md:flex space-x-10">              <a 
+                href={activePage === 'home' ? '#inicio' : '#/'} 
                 className={`${activePage === 'home' ? 'text-gray-300 hover:text-primary' : 'text-gray-300 hover:text-primary'} transition-all duration-300 font-medium relative group py-2`}
               >
                 Inicio
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
               </a>
               <a 
-                href={activePage === 'home' ? '#sobre-mi' : '/#sobre-mi'} 
+                href={activePage === 'home' ? '#sobre-mi' : '#/#sobre-mi'} 
                 className={`${activePage === 'about' ? 'text-primary' : 'text-gray-300 hover:text-primary'} transition-all duration-300 font-medium relative group py-2`}
               >
                 Sobre Mí
                 <span className={`absolute -bottom-1 left-0 ${activePage === 'about' ? 'w-full' : 'w-0'} h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full`}></span>
               </a>
               <a 
-                href={activePage === 'home' ? '#formacion' : '/#formacion'} 
+                href={activePage === 'home' ? '#formacion' : '#/#formacion'} 
                 className={`${activePage === 'education' ? 'text-primary' : 'text-gray-300 hover:text-primary'} transition-all duration-300 font-medium relative group py-2`}
               >
                 Formación
                 <span className={`absolute -bottom-1 left-0 ${activePage === 'education' ? 'w-full' : 'w-0'} h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full`}></span>
               </a>
               <a 
-                href="/operaciones/operaciones.html" 
+                href="#/operaciones" 
                 className={`${activePage === 'operaciones' ? 'text-primary' : 'text-gray-300 hover:text-primary'} transition-all duration-300 font-medium relative group py-2`}
               >
                 Clase de Conjuntos
                 <span className={`absolute -bottom-1 left-0 ${activePage === 'operaciones' ? 'w-full' : 'w-0'} h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full`}></span>
               </a>
               <a 
-                href={activePage === 'home' ? '#contacto' : '/#contacto'} 
+                href={activePage === 'home' ? '#contacto' : '#/#contacto'} 
                 className="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 Contacto
