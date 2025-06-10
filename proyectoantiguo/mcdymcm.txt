@@ -1,0 +1,158 @@
+# Clase Completa: Máximo Común Divisor (MCD) y Mínimo Común Múltiplo (MCM)
+
+## 1. Conceptos Fundamentales
+
+### Números Primos y Compuestos
+
+**Número Primo**: Es un número natural mayor que 1 que solo tiene dos divisores: 1 y él mismo.
+- Ejemplos: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29...
+- El 2 es el único número primo par
+
+**Número Compuesto**: Es un número natural mayor que 1 que tiene más de dos divisores.
+- Ejemplos: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18...
+- Se pueden expresar como producto de números primos
+
+**Nota**: El número 1 no es primo ni compuesto.
+
+## 2. Factorización Prima
+
+### ¿Qué es factorizar?
+Factorizar un número es descomponerlo como producto de sus factores primos.
+
+### Método de factorización:
+1. Dividir el número entre el menor primo posible (2, 3, 5, 7, 11...)
+2. Continuar dividiendo el cociente entre primos hasta llegar a 1
+3. Expresar como producto de potencias de primos
+
+### Ejemplos:
+
+**Factorizar 60:**
+```
+60 ÷ 2 = 30
+30 ÷ 2 = 15
+15 ÷ 3 = 5
+5 ÷ 5 = 1
+```
+**Resultado**: 60 = 2² × 3 × 5
+
+**Factorizar 84:**
+```
+84 ÷ 2 = 42
+42 ÷ 2 = 21
+21 ÷ 3 = 7
+7 ÷ 7 = 1
+```
+**Resultado**: 84 = 2² × 3 × 7
+
+## 3. Máximo Común Divisor (MCD)
+
+### Definición:
+El MCD de dos o más números es el mayor número que divide exactamente a todos ellos.
+
+### Método usando factorización prima:
+1. Factorizar cada número
+2. Identificar los factores primos comunes
+3. Tomar cada factor común con su menor exponente
+4. Multiplicar estos factores
+
+### Ejemplo: MCD(60, 84)
+- 60 = 2² × 3 × 5
+- 84 = 2² × 3 × 7
+
+Factores comunes: 2² y 3
+**MCD(60, 84) = 2² × 3 = 4 × 3 = 12**
+
+### Método de Euclides (alternativo):
+Para encontrar MCD(a, b):
+1. Dividir el mayor entre el menor
+2. El divisor se convierte en dividendo, el resto en divisor
+3. Repetir hasta que el resto sea 0
+4. El último divisor es el MCD
+
+## 4. Mínimo Común Múltiplo (MCM)
+
+### Definición:
+El MCM de dos o más números es el menor número positivo que es múltiplo de todos ellos.
+
+### Método usando factorización prima:
+1. Factorizar cada número
+2. Tomar todos los factores primos que aparecen
+3. Tomar cada factor con su mayor exponente
+4. Multiplicar estos factores
+
+### Ejemplo: MCM(60, 84)
+- 60 = 2² × 3 × 5
+- 84 = 2² × 3 × 7
+
+Todos los factores con mayor exponente: 2², 3, 5, 7
+**MCM(60, 84) = 2² × 3 × 5 × 7 = 4 × 3 × 5 × 7 = 420**
+
+### Relación importante:
+**MCD(a, b) × MCM(a, b) = a × b**
+
+## 5. Problemas Tipo y Trucos
+
+### Problema Tipo 1: Repartir equitativamente
+**Enunciado**: "Tengo 48 manzanas y 72 naranjas. Quiero hacer el mayor número de bolsas iguales sin que sobre fruta. ¿Cuántas bolsas puedo hacer y qué contendrá cada una?"
+
+**Solución**: Necesito el MCD(48, 72)
+- 48 = 2⁴ × 3
+- 72 = 2³ × 3²
+- MCD(48, 72) = 2³ × 3 = 24
+
+**Respuesta**: 24 bolsas, cada una con 2 manzanas y 3 naranjas.
+
+**Truco**: Si el problema habla de "repartir en partes iguales", "grupos iguales", "el mayor número de...", usa MCD.
+
+### Problema Tipo 2: Coincidencia de eventos
+**Enunciado**: "Un autobús pasa cada 12 minutos y otro cada 18 minutos. Si salen juntos a las 8:00 AM, ¿a qué hora volverán a coincidir?"
+
+**Solución**: Necesito el MCM(12, 18)
+- 12 = 2² × 3
+- 18 = 2 × 3²
+- MCM(12, 18) = 2² × 3² = 36
+
+**Respuesta**: Volverán a coincidir en 36 minutos, a las 8:36 AM.
+
+**Truco**: Si el problema habla de "volver a coincidir", "repetirse juntos", "cada cuánto tiempo", usa MCM.
+
+### Problema Tipo 3: Medidas exactas
+**Enunciado**: "Quiero embaldosar un piso rectangular de 84 cm × 60 cm con baldosas cuadradas lo más grandes posible. ¿Cuál debe ser el lado de cada baldosa?"
+
+**Solución**: Necesito el MCD(84, 60)
+- 84 = 2² × 3 × 7
+- 60 = 2² × 3 × 5
+- MCD(84, 60) = 2² × 3 = 12
+
+**Respuesta**: Baldosas de 12 cm × 12 cm.
+
+**Truco**: Si busco "la mayor medida", "el mayor tamaño", usa MCD.
+
+## 6. Trucos Rápidos
+
+### Para identificar qué usar:
+- **MCD**: Cuando busco el mayor valor que divide a todos
+  - Palabras clave: "mayor", "repartir", "dividir en partes iguales"
+  
+- **MCM**: Cuando busco el menor valor que contiene a todos
+  - Palabras clave: "coincidir", "repetirse", "cada cuánto tiempo"
+
+### Casos especiales:
+- Si los números son primos entre sí (MCD = 1): MCM = producto de los números
+- MCD(a, b) × MCM(a, b) = a × b (siempre se cumple)
+- MCD(a, a) = a y MCM(a, a) = a
+
+### Verificación rápida:
+- El MCD siempre divide a ambos números originales
+- Ambos números originales siempre dividen al MCM
+
+## 7. Ejercicios de Práctica
+
+1. Encuentra MCD y MCM de 36 y 48
+2. Un semáforo cambia cada 45 segundos y otro cada 75 segundos. ¿Cada cuánto tiempo cambian juntos?
+3. Quiero cortar listones de 90 cm y 126 cm en pedazos iguales lo más largos posible. ¿Cuánto debe medir cada pedazo?
+
+### Soluciones:
+1. MCD(36, 48) = 12; MCM(36, 48) = 144
+2. MCM(45, 75) = 225 segundos = 3 minutos 45 segundos
+3. MCD(90, 126) = 18 cm

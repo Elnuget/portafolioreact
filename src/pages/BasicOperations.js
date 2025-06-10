@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 
@@ -65,13 +66,12 @@ function BasicOperations() {
             <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Estamos preparando contenido sobre operaciones básicas. ¡Regresa pronto para ver el material completo!
-            </p>
-          </div>
+            </p>          </div>
           
           <div className="mt-12 text-center">
-            <a href="/operaciones/operaciones.html" className="inline-block bg-gradient-to-r from-primary to-secondary text-white px-10 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
-              ← Volver a Conjuntos Numéricos
-            </a>
+            <Link to="/" className="inline-block bg-gradient-to-r from-primary to-secondary text-white px-10 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+              ← Volver al Inicio
+            </Link>
           </div>
         </div>
       </section>
