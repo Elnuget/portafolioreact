@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones Básicas en Conjuntos Numéricos - Carlos Angulo</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="shortcut icon" type="image/png" href="../favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#dc2626',
+                        secondary: '#991b1b',
+                        accent: '#ef4444',
+                        dark: '#111827',
+                        'dark-light': '#1f2937',
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #111827 0%, #374151 50%, #dc2626 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: true,
+                packages: ['base', 'ams']
+            },
+            loader: {load: ['[tex]/ams']},
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-gray-900/98 backdrop-blur-md shadow-2xl fixed w-full top-0 z-50 border-b border-gray-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-5">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary via-red-500 to-secondary rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                        <span class="text-white font-bold text-xl">CA</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white leading-tight">Carlos Angulo</h1>
+                        <p class="text-gray-400 text-sm">Desarrollador & Educador</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-10">
+                    <a href="index.html#inicio" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Inicio
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="index.html#sobre-mi" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Sobre Mí
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="index.html#formacion" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Formación
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="operaciones.html" class="text-gray-300 hover:text-primary transition-all duration-300 font-medium relative group py-2">
+                        Conjuntos
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-primary font-medium relative group py-2">
+                        Operaciones
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300"></span>
+                    </a>
+                    <a href="index.html#contacto" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                        Contacto
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-300 hover:text-primary transition duration-300 p-2">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="md:hidden bg-gray-900 shadow-2xl absolute top-full left-0 right-0 border-t border-gray-700 hidden">
+        <div class="px-4 py-4 space-y-3">
+            <a href="index.html#inicio" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Inicio</a>
+            <a href="index.html#sobre-mi" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Sobre Mí</a>
+            <a href="index.html#formacion" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Formación</a>
+            <a href="operaciones.html" class="block py-3 text-gray-300 hover:text-primary transition duration-300 border-b border-gray-700">Conjuntos</a>
+            <a href="#" class="block py-3 text-primary transition duration-300 border-b border-gray-700">Operaciones</a>
+            <a href="index.html#contacto" class="block py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg text-center font-semibold hover:shadow-lg transition duration-300 mt-2">Contacto</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg pt-24 pb-20 px-4">
+        <div class="max-w-6xl mx-auto text-center text-white fade-in">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                Operaciones Básicas en Conjuntos Numéricos
+            </h1>
+            <p class="text-xl opacity-90 max-w-4xl mx-auto mb-10">
+                Descubre cómo realizar operaciones en cada conjunto numérico y sus características especiales
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid gap-8">
+                <!-- Números Naturales -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl font-bold text-blue-600">ℕ</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 text-center mb-6">Números Naturales (ℕ)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead>
+                                <tr class="bg-blue-50">
+                                    <th class="px-4 py-2 text-left text-blue-600">Operación</th>
+                                    <th class="px-4 py-2 text-left text-blue-600">¿Siempre posible?</th>
+                                    <th class="px-4 py-2 text-left text-blue-600">Ejemplo</th>
+                                    <th class="px-4 py-2 text-left text-blue-600">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-blue-100">
+                                <tr>
+                                    <td class="px-4 py-2">Suma</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">3 + 2 = 5</td>
+                                    <td class="px-4 py-2">El resultado es siempre otro número natural.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Resta</td>
+                                    <td class="px-4 py-2 text-red-600">❌ No</td>
+                                    <td class="px-4 py-2">2 - 5 = ❌</td>
+                                    <td class="px-4 py-2">No se puede si el minuendo es menor que el sustraendo.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Multiplicación</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">4 × 3 = 12</td>
+                                    <td class="px-4 py-2">Siempre posible entre naturales.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">División</td>
+                                    <td class="px-4 py-2 text-red-600">❌ No</td>
+                                    <td class="px-4 py-2">3 ÷ 2 = 1.5 ❌</td>
+                                    <td class="px-4 py-2">El resultado puede no ser un natural.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Números Enteros -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl font-bold text-green-600">ℤ</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 text-center mb-6">Números Enteros (ℤ)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead>
+                                <tr class="bg-green-50">
+                                    <th class="px-4 py-2 text-left text-green-600">Operación</th>
+                                    <th class="px-4 py-2 text-left text-green-600">¿Siempre posible?</th>
+                                    <th class="px-4 py-2 text-left text-green-600">Ejemplo</th>
+                                    <th class="px-4 py-2 text-left text-green-600">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-green-100">
+                                <tr>
+                                    <td class="px-4 py-2">Suma</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">-4 + 7 = 3</td>
+                                    <td class="px-4 py-2">Cerrado bajo la suma.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Resta</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">-2 - 5 = -7</td>
+                                    <td class="px-4 py-2">Siempre posible, resultado es un entero.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Multiplicación</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">-3 × 2 = -6</td>
+                                    <td class="px-4 py-2">Producto de enteros siempre es un entero.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">División</td>
+                                    <td class="px-4 py-2 text-red-600">❌ No</td>
+                                    <td class="px-4 py-2">5 ÷ 2 = 2.5 ❌</td>
+                                    <td class="px-4 py-2">El cociente puede no ser un entero.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Números Racionales -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl font-bold text-yellow-600">ℚ</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 text-center mb-6">Números Racionales (ℚ)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead>
+                                <tr class="bg-yellow-50">
+                                    <th class="px-4 py-2 text-left text-yellow-600">Operación</th>
+                                    <th class="px-4 py-2 text-left text-yellow-600">¿Siempre posible?</th>
+                                    <th class="px-4 py-2 text-left text-yellow-600">Ejemplo</th>
+                                    <th class="px-4 py-2 text-left text-yellow-600">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-yellow-100">
+                                <tr>
+                                    <td class="px-4 py-2">Suma</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">1/2 + 3/4 = 5/4</td>
+                                    <td class="px-4 py-2">Se hace con común denominador.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Resta</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">3/5 - 1/2 = 1/10</td>
+                                    <td class="px-4 py-2">Igual que la suma, con denominadores comunes.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Multiplicación</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">2/3 × 3/4 = 6/12 = 1/2</td>
+                                    <td class="px-4 py-2">Se multiplican numeradores y denominadores.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">División</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí (≠ 0)</td>
+                                    <td class="px-4 py-2">2/3 ÷ 4/5 = 2/3 × 5/4 = 5/6</td>
+                                    <td class="px-4 py-2">Se multiplica por el inverso del divisor.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Números Irracionales -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl font-bold text-red-600">𝕀</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 text-center mb-6">Números Irracionales</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead>
+                                <tr class="bg-red-50">
+                                    <th class="px-4 py-2 text-left text-red-600">Operación</th>
+                                    <th class="px-4 py-2 text-left text-red-600">¿Siempre posible?</th>
+                                    <th class="px-4 py-2 text-left text-red-600">Ejemplo</th>
+                                    <th class="px-4 py-2 text-left text-red-600">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-red-100">
+                                <tr>
+                                    <td class="px-4 py-2">Suma</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">√2 + √3 ≈ 3.146</td>
+                                    <td class="px-4 py-2">Resultado puede seguir siendo irracional.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Resta</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">π - √2 ≈ 1.57</td>
+                                    <td class="px-4 py-2">Sigue siendo irracional o racional, según el caso.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Multiplicación</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">√2 × √2 = 2</td>
+                                    <td class="px-4 py-2">A veces da un racional. Ej: √a × √a = a</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">División</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">π ÷ √2 ≈ 2.221</td>
+                                    <td class="px-4 py-2">No se obtiene una fracción exacta, pero es un número real.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Números Reales -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl font-bold text-purple-600">ℝ</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 text-center mb-6">Números Reales (ℝ)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead>
+                                <tr class="bg-purple-50">
+                                    <th class="px-4 py-2 text-left text-purple-600">Operación</th>
+                                    <th class="px-4 py-2 text-left text-purple-600">¿Siempre posible?</th>
+                                    <th class="px-4 py-2 text-left text-purple-600">Ejemplo</th>
+                                    <th class="px-4 py-2 text-left text-purple-600">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-purple-100">
+                                <tr>
+                                    <td class="px-4 py-2">Suma</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">2.5 + √3 ≈ 4.232</td>
+                                    <td class="px-4 py-2">Se suman como decimales o se deja en forma simbólica.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Resta</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">π - 1.5 ≈ 1.641</td>
+                                    <td class="px-4 py-2">Siempre definida.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Multiplicación</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">√2 × π ≈ 4.442</td>
+                                    <td class="px-4 py-2">Puede ser irracional o racional.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">División</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí (≠ 0)</td>
+                                    <td class="px-4 py-2">3.5 ÷ π ≈ 1.114</td>
+                                    <td class="px-4 py-2">Siempre que el divisor no sea cero.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Números Complejos -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl font-bold text-orange-600">ℂ</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 text-center mb-6">Números Complejos (ℂ)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead>
+                                <tr class="bg-orange-50">
+                                    <th class="px-4 py-2 text-left text-orange-600">Operación</th>
+                                    <th class="px-4 py-2 text-left text-orange-600">¿Siempre posible?</th>
+                                    <th class="px-4 py-2 text-left text-orange-600">Ejemplo</th>
+                                    <th class="px-4 py-2 text-left text-orange-600">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-orange-100">
+                                <tr>
+                                    <td class="px-4 py-2">Suma</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">(2 + 3i) + (1 - i) = 3 + 2i</td>
+                                    <td class="px-4 py-2">Se suman partes reales y partes imaginarias por separado.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Resta</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">(4 + i) - (1 + 2i) = 3 - i</td>
+                                    <td class="px-4 py-2">Igual que la suma.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">Multiplicación</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">(2 + i)(1 - i) = 3 - i</td>
+                                    <td class="px-4 py-2">Se aplica propiedad distributiva y i² = -1.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-2">División</td>
+                                    <td class="px-4 py-2 text-green-600">✅ Sí</td>
+                                    <td class="px-4 py-2">(3 + 2i) ÷ (1 - i) = ...</td>
+                                    <td class="px-4 py-2">Se racionaliza multiplicando por el conjugado del denominador.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <section class="py-12 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <a href="operaciones2.html" class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-10 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                Continuar a Ejercicios →
+            </a>
+        </div>
+    </section>
+
+    <hr class="my-12 border-gray-300">
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4 mt-12">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400">© 2025 Carlos Angulo. Todos los derechos reservados.</p>
+        </div>
+    </footer>    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+                mobileMenu.style.display = 'block';
+            } else {
+                mobileMenu.style.display = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.style.display = 'none';
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-gray-900/98');
+                nav.classList.remove('bg-gray-900/95');
+            } else {
+                nav.classList.add('bg-gray-900/95');
+                nav.classList.remove('bg-gray-900/98');
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
